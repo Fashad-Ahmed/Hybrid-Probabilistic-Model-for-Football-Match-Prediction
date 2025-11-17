@@ -134,7 +134,7 @@ mod3-miniproject/
 ├── notebook.ipynb          # Main notebook with complete pipeline
 ├── README.md               # This file
 ├── requirements.txt        # Python dependencies
-├── Matches.csv             # Dataset (to be downloaded)
+├── data/Matches.csv             # Dataset (to be downloaded)
 ├── report.tex              # Generated LaTeX report
 └── report.pdf              # Generated PDF report (optional)
 ```
@@ -179,18 +179,8 @@ All dependencies are automatically installed in the first cell of the notebook:
 - `tabulate`: Table formatting
 - `kaggle`: Dataset download (optional)
 
-## Notes
-
-- The notebook is **self-contained**: all code, including helper functions, is within the `.ipynb` file
-- Dependencies are installed via `%pip install` in the first cell (no `requirements.txt` needed)
-- The pipeline is designed to be **reproducible** and includes extensive documentation
-- All functions are **type-hinted** and include **docstrings** following Google-style conventions
 
 ## License
 
-This project is for educational purposes as part of a machine learning course module.
-
-## Contact
-
-For questions or issues, please refer to the course instructor or create an issue in the project repository.
+This project is for educational purposes as part of a Fundamentals of Artificial Intelligence and Knowledge Representation module 3 at <a href="https://www.unibo.it/it">Unibo</a>.
 

@@ -1,0 +1,34 @@
+1. The Baseline: Naive Bayes BN (Extended)
+Visual: A "Star" shape. FTR (Full Time Result) is the center, connected to everyone else. No other lines exist.
+
+Interpretation: This is the "Independence Assumption." The model believes that if you know the result (FTR), knowing the HomeElo tells you nothing new about HomeMomentum.
+
+Critique: We know this is false (strong teams usually have good momentum), but it's a robust, low-variance baseline.
+
+2. The "Human": Expert DAG BN
+Visual: A directed flow. It looks like you set it up so features point toward FTR (Predictive) or FTR connects to them. It's dense but structured.
+
+Interpretation: This represents "Domain Knowledge." You (the expert) forced the model to acknowledge that Elo influences Momentum and both influence the FTR.
+
+Critique: It is logical, but humans are biased. We might add connections that aren't strong in the data, or miss subtle ones.
+
+3. The "Champion": TAN BN (Tree Augmented Naive Bayes)
+Visual: Look at how clean it is! It looks like Naive Bayes (the star shape is still there), but it adds specific "augmenting" edges (e.g., GoalDiff connects to HomeMomentum).
+
+Interpretation: This is the "Middle Ground." It admits FTR is the most important factor, but it acknowledges specific dependencies: "Knowing the GoalDiff helps explain the Momentum."
+
+Why it wins: It captures the correlations without creating a "spaghetti" mess. It usually has the best trade-off between bias and variance.
+
+4. The "Skeptic": PC BN (Constraint-Based)
+Visual: Look at how sparse it is! FTR is disconnected from almost everything except HomeElo (and maybe AwayElo).
+
+Interpretation: The PC algorithm uses statistical tests (Chi-square). It likely found that once you know HomeElo, the other variables (like Form) became statistically irrelevant for predicting FTR.
+
+The Trap: This model often under-performs in prediction. It is too conservative. By cutting those edges, it threw away useful (albeit weak) signals. This is a great talking point for your report: "Constraint-based learning was too aggressive and lost predictive power."
+
+5. The "Over-Fitter": Learned DAG BN (HillClimb)
+Visual: Chaos. A web of connections. Look at HomeMomentum connecting to AwayElo.
+
+Interpretation: The HillClimb algorithm is "greedy." It kept adding arrows as long as the score (BIC) improved slightly.
+
+The Trap: It found "Spurious Correlations." Does AwayMomentum really cause HomeElo? No. But in the dataset, they might be correlated (e.g., good teams tend to play each other in the late stages of tournaments). This model fits the training data well but risks overfitting.
